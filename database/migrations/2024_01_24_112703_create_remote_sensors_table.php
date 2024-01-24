@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('remote_sensors', function (Blueprint $table) {
             $table->id();
-            $table->integer('device_id');
+            $table->string('device_id');
             $table->boolean('fan');
             $table->boolean('heater');
             $table->boolean('fogger');

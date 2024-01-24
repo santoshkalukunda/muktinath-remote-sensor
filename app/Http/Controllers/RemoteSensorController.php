@@ -11,6 +11,7 @@ class RemoteSensorController extends Controller
 
     public function store(Request $request)
     {
+        // return $request;
         RemoteSensor::create($request->all());
         return 'success';
     }
