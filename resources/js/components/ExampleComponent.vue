@@ -6,7 +6,7 @@
                     alt="muktinath Krishi Company Ltd." srcset="">
             </div>
             <div class="col-md-12">
-                <div class="fs-5 fw-bold text-decoration-underline text-success pb-2 text-center">Remote sensor detail
+                <div class="fs-5 fw-bold text-decoration-underline text-success pb-2 text-center">Remote Sensor Detail
                 </div>
                 <div>
                     <div v-if="data">
@@ -47,7 +47,7 @@
                                             <div class="card-body bg-white">
                                                 <h5 class="card-title">Temperature</h5>
                                                 <div class="card-text">
-                                                    <h1 v-if="data.data.logs && data.data.logs.length > 0">
+                                                    <h1 class="fw-bold" v-if="data.data.logs && data.data.logs.length > 0" style="color: #e21f27 ;">
                                                         {{ data . data . logs[0] . avgTemp }} <sup>o</sup>C
                                                     </h1>
                                                     <div class="d-flex justify-content-around">
@@ -72,7 +72,7 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">Humidity</h5>
                                                 <div class="card-text">
-                                                    <h1 v-if="data.data.logs && data.data.logs.length > 0">
+                                                    <h1 class="fw-bold" v-if="data.data.logs && data.data.logs.length > 0" style="color: #e21f27 ;">
                                                         {{ data . data . logs[0] . avgHumidity }}%
                                                     </h1>
                                                     <div class="d-flex justify-content-around">
