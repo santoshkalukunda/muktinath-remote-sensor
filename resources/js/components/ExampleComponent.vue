@@ -1,64 +1,94 @@
 <template>
     <div class="container mt-2">
         <div class="row justify-content-center">
-            <div class="col-md-4 text-center my-3">
+            <div class="col-md-4 text-center mt-2 ">
                 <img src="https://www.muktinathkrishi.com/assets/frontend/img/logo-muktinath.svg"
                     alt="muktinath Krishi Company Ltd." srcset="">
             </div>
-            <div class="col-md-12 text-center">
-                <div class="fs-5 fw-bold text-decoration-underline text-success py-2">Remote Sensor detail</div>
+            <div class="col-md-12">
+                <div class="fs-5 fw-bold text-decoration-underline text-success pb-2 text-center">Remote sensor detail
+                </div>
                 <div>
                     <div v-if="data">
-                        <div class="mb-3">
-                            <div><b>Customer Name :</b>
-                                {{ data . data . customerName == '' ? '' : 'Muktinath Krishi Co. Ltd.' }} </div>
-                            <div><b>Device Id :</b> {{ data . data . deviceId }}</div>
-                            <div v-if="data.data.logs && data.data.logs.length > 0">
+                        <div class="d-flex justify-content-around">
+                            <div class="mb-3 text-left">
+                                <div><b>Customer Name :</b>
+                                    {{ data . data . customerName == '' ? '' : 'Muktinath Krishi Co. Ltd.' }} </div>
+                                <div v-if="data.data.logs && data.data.logs.length > 0">
+                                    <!-- <div> <b>Sensor:</b> {{ data . data . logs[0] . sensor }}</div> -->
+                                    <div> <b>Location:</b> {{ data . data . logs[0] . location }}</div>
+                                </div>
 
-                                <div> <b>Sensor:</b> {{ data . data . logs[0] . sensor }}</div>
-                                <div> <b>Location:</b> {{ data . data . logs[0] . location }}</div>
-
+                            </div>
+                            <div class="text-right">
+                                <div><b>Device Id :</b> {{ data . data . deviceId }}</div>
+                                <div v-if="data.data.logs && data.data.logs.length > 0">
+                                    <div> <b>Sensor:</b> {{ data . data . logs[0] . sensor }}</div>
+                                    <!-- <div> <b>Location:</b> {{ data . data . logs[0] . location }}</div> -->
+                                </div>
                             </div>
 
                         </div>
+
+
+
                         <!-- <p>Customer ID: {{ data . data . customerId }}</p> -->
                         <!-- <p>Customer Name: {{ data . data . customerName }}</p> -->
                         <div class="row justify-content-center">
 
-                            <div class="col-md-2 text-center">
-                                <div class="border rounded bg-white">
-                                    <div>
-                                        <img src="/img/thermometer.png" alt="thermometer" style="height: 100px;">
-                                        <div>Temperature : <span v-if="data.data.logs && data.data.logs.length > 0">
-                                                {{ data . data . logs[0] . avgTemp }} <sup>o</sup>C
-                                            </span>
+                            <div class="col-md-4 text-center">
+                                <div class="card mb-3" style="max-width: 540px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/img/thermometer.png" class="img-fluid rounded-start"
+                                                alt="...">
                                         </div>
-                                    </div>
-                                    <div class="d-flex justify-content-around">
-                                        <div class="ml-2">Min : {{ data . data . minTemp }}<sup>o</sup>C </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body bg-white">
+                                                <h5 class="card-title">Temperature</h5>
+                                                <div class="card-text">
+                                                    <h1 v-if="data.data.logs && data.data.logs.length > 0">
+                                                        {{ data . data . logs[0] . avgTemp }} <sup>o</sup>C
+                                                    </h1>
+                                                    <div class="d-flex justify-content-around">
+                                                        <div class="ml-2">Min :
+                                                            {{ data . data . minTemp }}<sup>o</sup>C </div>
+                                                        <div>Max : {{ data . data . maxTemp }} <sup>o</sup>C</div>
+                                                    </div>
+                                                </div>
 
-                                        <div>Max : {{ data . data . maxTemp }} <sup>o</sup>C</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2 text-center">
-                                <div class="border rounded bg-white">
-                                    <div>
-                                        <img src="/img/humidity.png" alt="humidity" style="height: 100px;">
-                                        <div>
-                                            Humidity :
-                                            <span v-if="data.data.logs && data.data.logs.length > 0">
-                                                {{ data . data . logs[0] . avgHumidity }}%
-                                            </span>
+                            <div class="col-md-4 text-center">
+                                <div class="card bg-white mb-3" style="max-width: 540px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/img/humidity.png" class="img-fluid rounded-start" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Humidity</h5>
+                                                <div class="card-text">
+                                                    <h1 v-if="data.data.logs && data.data.logs.length > 0">
+                                                        {{ data . data . logs[0] . avgHumidity }}%
+                                                    </h1>
+                                                    <div class="d-flex justify-content-around">
+                                                        <div class="ml-2">Min : {{ data . data . minHumidity }}%
+                                                        </div>
+                                                        <div>Max : {{ data . data . maxHumidity }}%</div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-around">
-                                        <div class="ml-2">Min : {{ data . data . minHumidity }}%</div>
-                                        <div>Max : {{ data . data . maxHumidity }}%</div>
-                                    </div>
-
                                 </div>
                             </div>
+                        </div>
+                        <div class="row justify-content-center">
                             <div class="col-md-2 text-center">
                                 <div v-if="data . data . fan == true">
                                     <div class="border rounded bg-white pb-4">
