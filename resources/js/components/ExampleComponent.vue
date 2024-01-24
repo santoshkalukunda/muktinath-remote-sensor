@@ -13,12 +13,12 @@
                             <div><b>Customer Name :</b>
                                 {{ data . data . customerName == '' ? '' : 'Muktinath Krishi Co. Ltd.' }} </div>
                             <div><b>Device Id :</b> {{ data . data . deviceId }}</div>
-                            <ul v-if="data.data.logs && data.data.logs.length > 0">
-                                <li>
-                                    <div> <b>Sensor:</b> {{ data . data . logs[0] . sensor }}</div>
-                                    <div> <b>Location:</b> {{ data . data . logs[0] . location }}</div>
-                                </li>
-                            </ul>
+                            <div v-if="data.data.logs && data.data.logs.length > 0">
+
+                                <div> <b>Sensor:</b> {{ data . data . logs[0] . sensor }}</div>
+                                <div> <b>Location:</b> {{ data . data . logs[0] . location }}</div>
+
+                            </div>
 
                         </div>
                         <!-- <p>Customer ID: {{ data . data . customerId }}</p> -->
@@ -226,12 +226,15 @@
 
 <script>
     export default {
+        props: ['deviceId'],
         data() {
             return {
                 data: null
             };
         },
         mounted() {
+            // console.log('Device ID:', this.deviceId);
+            // const deviceId = this.deviceId;
             // Fetch data every 1 second
             this.fetchDataInterval = setInterval(() => {
                 this.fetchData();
@@ -244,8 +247,8 @@
         methods: {
             fetchData() {
                 // Replace the URL with your actual API endpoint
-                const deviceId = this.$route.params.deviceId || 1400; // Default to 1400 if not provided
-                const apiUrl = `https://www.muktinathkrishi.com/api/remotes/remote-sensor-devices/${deviceId}`;
+                // const deviceId = 1400; // Default to 1400 if not provided
+                const apiUrl = `https://www.muktinathkrishi.com/api/remotes/remote-sensor-devices/${this.deviceId}`;
 
                 // Use Axios to make the API request
                 axios.get(apiUrl)

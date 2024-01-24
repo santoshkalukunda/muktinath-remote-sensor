@@ -16,8 +16,9 @@ use PhpParser\Node\Stmt\TryCatch;
 */
 
 Route::get('/', function () {
-  return view('welcome');
+    $deviceId = 1400;
+    return view('welcome', compact('deviceId'));
 });
-Route::get('/{deviceId}', function () {
-  return view('welcome');
+Route::get('/{deviceId}', function ($deviceId) {
+    return view('welcome', compact('deviceId'));
 });

@@ -19,7 +19,7 @@
 
 <body class="antialiased">
     <div id="app">
-        <example-component />
+        <example-component :device-id="{{ $deviceId }}"/>
     </div>
 </body>
 
