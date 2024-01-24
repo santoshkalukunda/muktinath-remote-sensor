@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RemoteSensor;
 use Illuminate\Http\Request;
 
 class RemoteSensorController extends Controller
 {
-    public function store(Request $request){
-        return $request;
+    public $data = 'hello';
+
+    public function store(Request $request)
+    {
+        RemoteSensor::create($request->all());
+        return 'success';
+    }
+    public function index()
+    {
+        return RemoteSensor::get();
     }
 }
