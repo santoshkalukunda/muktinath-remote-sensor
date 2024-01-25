@@ -11,8 +11,14 @@ class RemoteSensorController extends Controller
 
     public function store(Request $request)
     {
-        // return $request;
-        RemoteSensor::create($request->all());
+        $remoteSensor = RemoteSensor::where('device_id', $request->device_id)->first();
+        if ($remoteSensor) {
+        //    return $request->all();
+            $remoteSensor->update($request->all());
+            return "updated";
+        } else {
+            RemoteSensor::create($request->all());
+        }
         return 'success';
     }
     public function index()

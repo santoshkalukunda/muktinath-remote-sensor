@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\RemoteSensorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('remote-sensors.store', [RemoteSensorController::class, 'store']);
 Route::get('remote-sensors.index', [RemoteSensorController::class, 'index']);
+
+Route::apiResource('qr-codes', QrCodeController::class);
+

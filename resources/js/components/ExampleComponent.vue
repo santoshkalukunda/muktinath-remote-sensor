@@ -37,7 +37,7 @@
                         <div class="row justify-content-center">
 
                             <div class="col-md-4 text-center">
-                                <div class="card mb-3" style="max-width: 540px;">
+                                <div class="card mb-3">
                                     <div class="row g-0">
                                         <div class="col-md-4">
                                             <img src="/img/thermometer.png" class="img-fluid rounded-start"
@@ -47,7 +47,9 @@
                                             <div class="card-body bg-white">
                                                 <h5 class="card-title">Temperature</h5>
                                                 <div class="card-text">
-                                                    <h1 class="fw-bold" v-if="data.data.logs && data.data.logs.length > 0" style="color: #e21f27 ;">
+                                                    <h1 class="fw-bold"
+                                                        v-if="data.data.logs && data.data.logs.length > 0"
+                                                        style="color: #e21f27 ;">
                                                         {{ data . data . logs[0] . avgTemp }} <sup>o</sup>C
                                                     </h1>
                                                     <div class="d-flex justify-content-around">
@@ -63,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 text-center">
-                                <div class="card bg-white mb-3" style="max-width: 540px;">
+                                <div class="card bg-white mb-3">
                                     <div class="row g-0">
                                         <div class="col-md-4">
                                             <img src="/img/humidity.png" class="img-fluid rounded-start" alt="...">
@@ -72,7 +74,9 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">Humidity</h5>
                                                 <div class="card-text">
-                                                    <h1 class="fw-bold" v-if="data.data.logs && data.data.logs.length > 0" style="color: #e21f27 ;">
+                                                    <h1 class="fw-bold"
+                                                        v-if="data.data.logs && data.data.logs.length > 0"
+                                                        style="color: #e21f27 ;">
                                                         {{ data . data . logs[0] . avgHumidity }}%
                                                     </h1>
                                                     <div class="d-flex justify-content-around">
@@ -204,34 +208,37 @@
         <div class="container mt-2">
             <div class="d-flex justify-content-between">
                 <div class="d-flex gap-2">
-                    <div>
+                    <!-- <div>
                         <i class="bi bi-geo-alt-fill fs-1"></i>
-                    </div>
+                    </div> -->
                     <div>
                         <div class="fs-5">
-                            Head Office
+                            Contact
                         </div>
                         <div>
-                            Basundhara, Ring Road
+                            <i class="bi bi-geo-alt-fill"></i> Basundhara, Ring Road
                         </div>
                         <div>
                             Kathmandu, Nepal (44600)
+                        </div>
+                        <div>
+                            <i class="bi bi-envelope"></i> info@muktinathkrishi.com
+                        </div>
+                        <div>
+                            <i class="bi bi-telephone"></i> 18105000033 / +977-1-4950097
                         </div>
                     </div>
                 </div>
                 <div class="d-flex gap-2">
                     <div>
-                        <i class="bi bi-telephone fs-1"></i>
+                        <i class="bi bi-telephone"></i>
                     </div>
                     <div>
                         <div class="fs-5">
                             Contact
                         </div>
                         <div>
-                            18105000033
-                        </div>
-                        <div>
-                            +977-1-4950097
+                            18105000033 / +977-1-4950097
                         </div>
                     </div>
                 </div>
@@ -280,6 +287,7 @@
                 // const deviceId = 1400; // Default to 1400 if not provided
                 const apiUrl = `https://www.muktinathkrishi.com/api/remotes/remote-sensor-devices/${this.deviceId}`;
 
+                // const apiQrcodes =``
                 // Use Axios to make the API request
                 axios.get(apiUrl)
                     .then(response => {
@@ -297,11 +305,14 @@
 </script>
 <style>
     .footer {
+        padding-top: 10px;
+        padding-bottom: 10px;
         position: fixed;
-        left: 0;
+        /* left: 0; */
         bottom: 0;
         width: 100%;
         background-color: #17af4e;
         color: white;
+        font-size: larger;
     }
 </style>
