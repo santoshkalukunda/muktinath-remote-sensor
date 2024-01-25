@@ -263,7 +263,7 @@
             // Fetch data every 1 second
             this.fetchDataInterval = setInterval(() => {
                 this.fetchData();
-            }, 1000);
+            }, 5000);
 
 
         },
