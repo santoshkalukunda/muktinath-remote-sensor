@@ -13,9 +13,9 @@ class RemoteSensorController extends Controller
     {
         $remoteSensor = RemoteSensor::where('device_id', $request->device_id)->first();
         if ($remoteSensor) {
-        //    return $request->all();
+            //    return $request->all();
             $remoteSensor->update($request->all());
-            return "updated";
+            return 'updated';
         } else {
             RemoteSensor::create($request->all());
         }
@@ -24,5 +24,15 @@ class RemoteSensorController extends Controller
     public function index()
     {
         return RemoteSensor::get();
+    }
+
+    public function show(RemoteSensor $remoteSensor)
+    {
+        return response()->json(
+            [
+                'remoteSensor' => $remoteSensor,
+            ],
+            200,
+        );
     }
 }
