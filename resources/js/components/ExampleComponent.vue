@@ -6,7 +6,8 @@
                     alt="muktinath Krishi Company Ltd." srcset="">
             </div>
             <div class="col-md-12">
-                <div class="fs-5 fw-bold text-decoration-underline text-success pb-2 text-center">Remote Sensor Detail
+                <div class="fs-5 fw-bold text-decoration-underline text-success py-3 text-center">
+                    REMOTE SENSOR DETAILS
                 </div>
                 <div>
                     <div v-if="data">
@@ -229,33 +230,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex gap-2">
-                    <div>
-                        <i class="bi bi-telephone"></i>
-                    </div>
-                    <div>
-                        <div class="fs-5">
-                            Contact
-                        </div>
-                        <div>
-                            18105000033 / +977-1-4950097
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex gap-2">
-                    <div>
-                        <i class="bi bi-envelope fs-1"></i>
-                    </div>
-                    <div>
-                        <div class="fs-5">
-                            Email
-                        </div>
-                        <div>
-                            info@muktinathkrishi.com
-                        </div>
+                <!-- <div>{{ qrCodes . qrCodes . id }}</div> -->
 
+                <div v-for="qrCode in qrCodes.qrCodes" :key="qrCode.id">
+                    <div>
+                        <div>
+                            <!-- Use v-bind to dynamically set the src attribute -->
+                            <img :src="qrCode.qr" :alt="qrCode.name"  style="height: 140px;"/>
+                        </div>
+                        <div class="text-center">{{ qrCode.name }}</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -267,7 +253,8 @@
         data() {
             return {
                 data: null,
-                remoteSensor: null
+                remoteSensor: null,
+                qrCodes: null,
             };
         },
         mounted() {
@@ -278,7 +265,7 @@
                 this.fetchData();
             }, 1000);
 
-            
+
         },
         beforeDestroy() {
             // Clear the interval when the component is destroyed
@@ -290,7 +277,7 @@
                 // const deviceId = 1400; // Default to 1400 if not provided
                 const apiUrl = `https://www.muktinathkrishi.com/api/remotes/remote-sensor-devices/${this.deviceId}`;
                 const apiData = `https://automation.muktinathfoundation.org/api/remote-sensors.show/8`;
-                // const apiQrcodes =``
+                const apiQrCodes = `api/qr-codes`;
                 // Use Axios to make the API request
                 axios.get(apiUrl)
                     .then(response => {
@@ -310,6 +297,16 @@
                     })
                     .catch(error => {
                         console.error('Error fetching remoteSensor:', error);
+                    });
+
+                axios.get(apiQrCodes)
+                    .then(response => {
+                        // Update the 'data' property with the received data
+                        this.qrCodes = response.data;
+                        console.log(response.data);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching qrCodes:', error);
                     });
 
             }
