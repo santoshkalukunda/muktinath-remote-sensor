@@ -94,7 +94,7 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-2 text-center">
-                                <div v-if="data . data . fan == true">
+                                <div v-if="remoteSensor . remoteSensor . fan == true">
                                     <div class="border rounded bg-white pb-4">
                                         <div>
                                             <img src="/img/running-fan.gif" alt="fan-on" style="height: 100px;">
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2 text-center">
-                                <div v-if="data . data . heater == true">
+                                <div v-if="remoteSensor . remoteSensor . heater == true">
                                     <div class="border rounded bg-white pb-4">
                                         <div>
                                             <img src="/img/heater-on.png" alt="heater-on" style="height: 100px;">
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2 text-center">
-                                <div v-if="data . data . pad == true">
+                                <div v-if="remoteSensor . remoteSensor . pad == true">
                                     <div class="border rounded bg-white pb-4">
                                         <div>
                                             <img src="/img/cooling-pad.png" alt="Cooling Pad-on" style="height: 100px;">
@@ -160,7 +160,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2 text-center">
-                                <div v-if="data . data . fogger == true">
+                                <div v-if="remoteSensor . remoteSensor . fogger == true">
                                     <div class="border rounded bg-white pb-4">
                                         <div>
                                             <img src="/img/fooger.png" alt="Fooger-on" style="height: 100px;">
@@ -266,7 +266,8 @@
         props: ['deviceId'],
         data() {
             return {
-                data: null
+                data: null,
+                remoteSensor: null
             };
         },
         mounted() {
@@ -276,6 +277,8 @@
             this.fetchDataInterval = setInterval(() => {
                 this.fetchData();
             }, 1000);
+
+            
         },
         beforeDestroy() {
             // Clear the interval when the component is destroyed
@@ -286,19 +289,29 @@
                 // Replace the URL with your actual API endpoint
                 // const deviceId = 1400; // Default to 1400 if not provided
                 const apiUrl = `https://www.muktinathkrishi.com/api/remotes/remote-sensor-devices/${this.deviceId}`;
-
+                const apiData = `https://automation.muktinathfoundation.org/api/remote-sensors.show/8`;
                 // const apiQrcodes =``
                 // Use Axios to make the API request
                 axios.get(apiUrl)
                     .then(response => {
                         // Update the 'data' property with the received data
                         this.data = response.data;
+
                     })
                     .catch(error => {
                         console.error('Error fetching data:', error);
                     });
 
-                // console.log(data);
+
+                axios.get(apiData)
+                    .then(response => {
+                        // Update the 'data' property with the received data
+                        this.remoteSensor = response.data;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching remoteSensor:', error);
+                    });
+
             }
         }
     };
